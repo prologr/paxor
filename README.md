@@ -4,8 +4,6 @@
 [![R-CMD-check](https://github.com/royratcliffe/paxor/workflows/R-CMD-check/badge.svg)](https://github.com/royratcliffe/paxor/actions)
 <!-- badges: end -->
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
 # paxor
 
 <!-- badges: start -->
