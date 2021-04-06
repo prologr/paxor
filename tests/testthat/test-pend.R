@@ -1,5 +1,5 @@
 test_that("pend get works", {
-  expect_equal(paxor::pend.get(), NULL)
+  expect_equal(paxor::pend.get(), c())
   expect_equal(paxor::pend.get("xyz"), c("xyz"))
   expect_equal(paxor::pend.get("abc"), c("xyz", "abc"))
 })

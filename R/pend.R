@@ -1,6 +1,6 @@
 #' @export
 pend.get <- local({
-  keys <- NULL
+  keys <- c()
   function(...) {
     keys <<- union(keys, c(...))
     return(keys)
