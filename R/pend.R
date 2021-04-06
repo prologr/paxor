@@ -4,7 +4,7 @@
 #' @return Accumulated vector of keys for pending Paxos-get operations.
 #' @export
 pend.get <- local({
-  keys <- c()
+  keys <- NULL
   function(...) {
     keys <<- union(keys, c(...))
     return(keys)
