@@ -14,15 +14,15 @@ properties(_Request) :-
     findall(Key=Data,
             (   paxos_property(Property),
                 Property =.. [Key, Data]
-            ), JSON),
-    reply_json(json(JSON)).
+            ), Terms),
+    reply_json(json(Terms)).
 
 key(get, Key, _Request) :-
     (   paxos_get(Key, Data)
-    ->  JSON = [data=Data]
-    ;   JSON = []
+    ->  Terms = [data=Data]
+    ;   Terms = []
     ),
-    reply_json(json(JSON)).
+    reply_json(json(Terms)).
 key(post, Key, Request) :-
     http_read_data(Request, Data, []),
     paxos_set(Key, Data).
