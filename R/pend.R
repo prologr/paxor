@@ -7,7 +7,6 @@ pend.get <- local({
   keys <- NULL
   function(...) {
     keys <<- union(keys, c(...))
-    return(keys)
   }
 })
 
