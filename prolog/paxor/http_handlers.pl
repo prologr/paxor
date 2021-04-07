@@ -12,10 +12,23 @@
 
 properties(_Request) :-
     findall(Key=Data,
-            (   paxos_property(Property),
+            (   property(Property),
                 Property =.. [Key, Data]
             ), Terms),
     reply_json(json(Terms)).
+
+property(Property) :- paxos_property(Property).
+property(nth1(Nth1)) :-
+    paxos_property(node(Node)),
+    paxos_property(quorum(Quorum)),
+    pop_lsbs(Quorum, Nodes),
+    once(nth1(Nth1, Nodes, Node)).
+
+pop_lsbs(0, []) :- !.
+pop_lsbs(A, [H|T]) :-
+    H is lsb(A),
+    B is A /\ \(1 << H),
+    pop_lsbs(B, T).
 
 key(get, Key, _Request) :-
     (   paxos_get(Key, Data)
