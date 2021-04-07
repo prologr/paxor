@@ -4,7 +4,7 @@
 :- autoload(library(http/http_json), [reply_json/1]).
 :- autoload(library(paxos), [paxos_property/1, paxos_get/2, paxos_set/2]).
 
-:- http_handler(root(paxor/properties), properties, []).
+:- http_handler(root(paxor), properties, []).
 :- http_handler(root(paxor/Key), key(Method, Key),
                 [ method(Method),
                   methods([get, post])
