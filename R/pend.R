@@ -25,6 +25,6 @@ pend.set <- local({
     for (name in names(x)) {
       pairs[[name]] <- x[[name]]
     }
-    return(as.list(pairs))
+    as.list(pairs)
   }
 })
