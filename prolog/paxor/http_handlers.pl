@@ -11,8 +11,11 @@
                 ]).
 
 properties(_Request) :-
-    findall(A=B, (paxos_property(C), C =.. [A, B]), D),
-    reply_json(json(D)).
+    findall(Key=Data,
+            (   paxos_property(Property),
+                Property =.. [Key, Data]
+            ), JSON),
+    reply_json(json(JSON)).
 
 key(get, Key, _Request) :-
     (   paxos_get(Key, Data)
