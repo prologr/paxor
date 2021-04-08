@@ -6,6 +6,7 @@
               http_read_json/2
             ]).
 :- autoload(library(paxos), [paxos_property/1, paxos_get/2, paxos_set/2]).
+:- autoload(library(lists), [nth1/3]).
 
 :- http_handler(root(paxor), properties, []).
 :- http_handler(root(paxor/Key), key(Method, Key),
