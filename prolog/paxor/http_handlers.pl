@@ -35,7 +35,7 @@ key(get, Key, _Request) :-
     ->  Terms = [data=Data]
     ;   Terms = []
     ),
-    reply_json(json(Terms)).
+    reply_json(json(Terms), [serialize_unknown(true)]).
 key(post, Key, Request) :-
     http_read_data(Request, Data, []),
     paxos_set(Key, Data).
