@@ -36,11 +36,10 @@ pop_lsbs(A, [H|T]) :-
 
 key(get, Key, _Request) :-
     (   paxos_get(Key, Data)
-    ->  Terms = [data=Data]
-    ;   Terms = []
-    ),
-    reply_json(json(Terms), [serialize_unknown(true)]).
+    ->  reply_json(Data, [serialize_unknown(true)])
+    ;   throw(http_reply(no_content))
+    ).
 key(post, Key, Request) :-
-    http_read_json(Request, json([data=Data])),
+    http_read_json(Request, Data),
     paxos_set(Key, Data),
-    reply_json(@(true)).
+    throw(http_reply(no_content)).
