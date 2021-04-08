@@ -1,7 +1,10 @@
 :- module(paxor_http_handlers, []).
 :- autoload(library(http/http_dispatch), [http_handler/3]).
-:- autoload(library(http/http_client), [http_read_data/3]).
-:- autoload(library(http/http_json), [reply_json/1]).
+:- autoload(library(http/http_json),
+            [ reply_json/1,
+              reply_json/2,
+              http_read_json/2
+            ]).
 :- autoload(library(paxos), [paxos_property/1, paxos_get/2, paxos_set/2]).
 
 :- http_handler(root(paxor), properties, []).
