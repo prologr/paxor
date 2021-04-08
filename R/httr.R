@@ -1,4 +1,11 @@
 #' @export
+PROPERTIES <- function() {
+  response <- httr::GET("http://localhost:8080/paxor")
+  httr::stop_for_status(response)
+  httr::content(response)
+}
+
+#' @export
 GET <- function(key) {
   response <- httr::GET(url = url(key))
   httr::stop_for_status(response)
