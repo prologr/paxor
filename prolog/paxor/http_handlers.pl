@@ -49,10 +49,14 @@ properties(_Request) :-
     reply_json(json(Terms)).
 
 property(Property) :- paxos_property(Property).
-property(nth1(Nth1)) :-
-    paxos_property(node(Node)),
+property(Property) :-
     paxos_property(quorum(Quorum)),
     pop_lsbs(Quorum, Nodes),
+    property_of_nodes(Nodes, Property).
+
+property_of_nodes(Nodes, nodes(Nodes)).
+property_of_nodes(Nodes, nth1(Nth1)) :-
+    paxos_property(node(Node)),
     once(nth1(Nth1, Nodes, Node)).
 
 pop_lsbs(0, []) :- !.
