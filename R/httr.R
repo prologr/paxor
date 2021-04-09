@@ -16,7 +16,7 @@ GET <- function(key) {
 SET <- function(...) {
   keyed.data <- list(...)
   stopifnot(isNamed(keyed.data), length(keyed.data) == 1)
-  body <- jsonlite::toJSON(keyed.data, auto_unbox = TRUE, digits = NA)
+  body <- jsonlite::toJSON(keyed.data[[1]], auto_unbox = TRUE, digits = NA)
   response <- httr::POST(url = url(names(keyed.data)),
                          body = body,
                          encode = "raw",
