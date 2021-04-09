@@ -1,6 +1,6 @@
 #' @export
 PROPERTIES <- function() {
-  response <- httr::GET("http://localhost:8080/paxor")
+  response <- httr::GET(url = url())
   httr::stop_for_status(response)
   httr::content(response)
 }
@@ -13,11 +13,14 @@ GET <- function(key) {
 }
 
 #' @export
-SET <- function(key, data) {
-  body <- jsonlite::toJSON(data, auto_unbox = TRUE, digits = NA)
-  response <- httr::POST(url = url(key), body = body, encode = "raw", content_type_json())
+SET <- function(...) {
+  keyed.data <- list(...)
+  stopifnot(isNamed(keyed.data), length(keyed.data) == 1)
+  body <- jsonlite::toJSON(keyed.data[[1]], auto_unbox = TRUE, digits = NA)
+  response <- httr::POST(url = url(names(keyed.data)),
+                         body = body,
+                         encode = "raw",
+                         httr::content_type_json())
   httr::stop_for_status(response)
   httr::content(response)
 }
-
-url <- function(key) paste0("http://localhost:8080/paxor/", key)
