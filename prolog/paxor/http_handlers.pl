@@ -53,6 +53,12 @@ property(Property) :-
     paxos_property(quorum(Quorum)),
     pop_lsbs(Quorum, Nodes),
     property_of_nodes(Nodes, Property).
+property(ledger(Ledger)) :-
+    findall(json([ key=Key,
+                   gen=Gen,
+                   value=Value,
+                   holders=Holders
+                 ]), paxos:ledger_current(Key, Gen, Value, Holders), Ledger).
 
 property_of_nodes(Nodes, nodes(Nodes)).
 property_of_nodes(Nodes, nth1(Nth1)) :-
