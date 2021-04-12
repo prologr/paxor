@@ -3,5 +3,5 @@
 export(GET)
 export(PROPERTIES)
 export(SET)
-export(pend.get)
-export(pend.set)
+export(get)
+export(set)
