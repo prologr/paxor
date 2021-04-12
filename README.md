@@ -1,7 +1,7 @@
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/royratcliffe/paxor/workflows/R-CMD-check/badge.svg)](https://github.com/royratcliffe/paxor/actions)
+[![R-CMD-check](https://github.com/prologr/paxor/workflows/R-CMD-check/badge.svg)](https://github.com/prologr/paxor/actions)
 <!-- badges: end -->
 
 # paxor
@@ -24,7 +24,7 @@ And the development version from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("royratcliffe/paxor")
+devtools::install_github("prologr/paxor")
 ```
 
 ## Example

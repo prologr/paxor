@@ -3,11 +3,10 @@
 #' @param ... Keys to get.
 #' @return Accumulated vector of keys for pending Paxos-get operations.
 #' @export
-pend.get <- local({
-  keys <- c()
+get <- local({
+  keys <- NULL
   function(...) {
     keys <<- union(keys, c(...))
-    return(keys)
   }
 })
 
@@ -18,13 +17,13 @@ pend.get <- local({
 #'   operations.
 #' @seealso [new.env()]
 #' @export
-pend.set <- local({
+set <- local({
   pairs <- new.env()
   function(...) {
     x <- list(...)
     for (name in names(x)) {
       pairs[[name]] <- x[[name]]
     }
-    return(as.list(pairs))
+    as.list(pairs)
   }
 })
