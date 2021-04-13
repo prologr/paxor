@@ -1,7 +1,9 @@
 :- module(r_tidy, []).
 :- use_module(library(atom)).
 :- use_module(library(filesex)).
+:- use_module(library(readutil)).
 :- use_module(library(thread_pool)).
+:- use_module(library(settings)).
 :- use_module(eval).
 :- use_module(pool).
 
@@ -24,9 +26,13 @@ tidy(A) :-
     tidy(A, C).
 
 tidy(_, B) :- thread_property(_, alias(B)), !.
-tidy(A, B) :- thread_create_in_pool(r, eval(A, _), _,
+tidy(A, B) :- thread_create_in_pool(r, eval(A), _,
                                     [ alias(B),
                                       detached(true)
                                     ]).
+
+eval(A) :-
+    read_file_to_string(A, B, []),
+    eval(B, _).
 
 r(A) :- directory_member(., A, [extensions(['R', r]), recursive(true)]).
