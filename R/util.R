@@ -9,7 +9,7 @@ hasNames <- function(x) {
 }
 
 url <- function(...) {
-  PAXOR_URL <- utils::URLencode(Sys.getenv("PAXOR_URL"))
-  url <- PAXOR_URL %||% "http://localhost:8080/paxor"
-  paste(url, ..., sep = "/")
+  PAXOR_URL <- Sys.getenv("PAXOR_URL", unset = NA)
+  url <- if (is.na(PAXOR_URL)) "http://localhost:8080/paxor" else PAXOR_URL
+  paste(utils::URLencode(url), ..., sep = "/")
 }
