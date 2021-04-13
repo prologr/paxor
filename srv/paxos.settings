@@ -1,0 +1,9 @@
+﻿/*  Saved settings
+*/
+
+
+%	Max Retries to get a value from the forum
+setting(paxos:max_gets, 10).
+
+%	Max time to wait for a response
+setting(paxos:response_timeout, 0.2).

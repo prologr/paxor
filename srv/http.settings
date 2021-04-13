@@ -1,0 +1,9 @@
+﻿/*  Saved settings
+*/
+
+
+%	File in which to log HTTP requests
+setting(http:logfile, '/var/log/daemon/http.log').
+
+%	Log POST data up to N bytes long
+setting(http:log_post_data, 1000000).
