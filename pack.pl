@@ -8,3 +8,4 @@ maintainer('Roy Ratcliffe', 'royratcliffe@me.com').
 
 home('https://github.com/prologr/paxor').
 download('https://github.com/prologr/paxor/releases/*.zip').
+requires(rserve_client).

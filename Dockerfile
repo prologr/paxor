@@ -19,13 +19,27 @@ RUN apt-get update
 RUN apt-get install -y git
 RUN apt-get install -y autoconf
 
+RUN echo "deb https://cloud.r-project.org/bin/linux/ubuntu focal-cran40/" > /etc/apt/sources.list.d/cran-focal.list
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
+
+RUN apt-get update
+RUN apt-get install -y r-base
+RUN apt-get install -y r-base-dev
+RUN apt-get install -y libcurl4-openssl-dev
+
+RUN Rscript -e 'install.packages("Rserve",, "http://rforge.net/")'
+
 WORKDIR /srv
 COPY srv .
 RUN find . -name '*~' -exec rm {} +
+
 RUN mkdir /var/log/daemon
 RUN chown daemon.daemon /var/log/daemon
+
 RUN swipl -g "pack_install(_, [url('https://github.com/royratcliffe/canny_tudor/archive/0.13.0.zip'), inquiry(false), interactive(false), silent(true)])"
 RUN swipl -g "pack_install(_, [url('https://github.com/prologr/paxor/archive/0.2.0.zip'), inquiry(false), interactive(false), silent(true)])"
+RUN swipl -g "pack_install(rserve_client, [interactive(false)])" -g "pack_rebuild(rserve_client)"
+
 ENTRYPOINT [ "/bin/sh", "-c", "exec swipl [0-9]*.pl -- --no-fork --user=daemon --http=8080" ]
 
 EXPOSE 8080
