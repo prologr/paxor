@@ -46,7 +46,7 @@ properties(_Request) :-
             (   property(Property),
                 Property =.. [Key, Data]
             ), Terms),
-    reply_json(json(Terms)).
+    reply_json(json(Terms), [serialize_unknown(true)]).
 
 property(Property) :- paxos_property(Property).
 property(Property) :-
