@@ -13,3 +13,9 @@ url <- function(...) {
   url <- if (is.na(PAXOR_URL)) "http://localhost:8080/paxor" else PAXOR_URL
   paste(utils::URLencode(url), ..., sep = "/")
 }
+
+content_for_response <- function(response) {
+  httr::stop_for_status(response)
+  content <- httr::content(response)
+  if (identical(content, raw(0))) TRUE else content
+}
