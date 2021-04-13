@@ -27,3 +27,5 @@ RUN chown daemon.daemon /var/log/daemon
 RUN swipl -g "pack_install(_, [url('https://github.com/royratcliffe/canny_tudor/archive/0.13.0.zip'), inquiry(false), interactive(false), silent(true)])"
 RUN swipl -g "pack_install(_, [url('https://github.com/prologr/paxor/archive/0.1.0.zip'), inquiry(false), interactive(false), silent(true)])"
 ENTRYPOINT [ "/bin/sh", "-c", "exec swipl [0-9]*.pl -- --no-fork --user=daemon --http=8080" ]
+
+EXPOSE 8080
