@@ -1,5 +1,5 @@
 name(paxor).
-version('0.3.0').
+version('0.3.1').
 title('PaxoR').
 
 author('Roy Ratcliffe', 'royratcliffe@me.com').
