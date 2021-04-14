@@ -8,5 +8,5 @@
 
 eval(Request) :-
     http_read_data(Request, Command, [to(string)]),
-    eval(Command, Results),
+    eval_r(Command, Results),
     format('Content-Type: text/plain~n~n~q', [Results]).
