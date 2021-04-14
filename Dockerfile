@@ -28,6 +28,9 @@ RUN apt-get install -y r-base-dev
 RUN apt-get install -y libssl-dev
 RUN apt-get install -y libcurl4-openssl-dev
 
+RUN Rscript -e 'install.packages("devtools")'
+RUN Rscript -e 'install.packages("remotes")'
+RUN Rscript -e 'remotes::install_github("prologr/paxor@0.3.1")'
 RUN Rscript -e 'install.packages("Rserve",, "http://rforge.net/")'
 
 WORKDIR /srv
