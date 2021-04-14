@@ -33,6 +33,6 @@ tidy(A, B) :- thread_create_in_pool(r, eval(A), _,
 
 eval(A) :-
     read_file_to_string(A, B, []),
-    eval(B, _).
+    eval_r(B, _).
 
 r(A) :- directory_member(., A, [extensions(['R', r]), recursive(true)]).
