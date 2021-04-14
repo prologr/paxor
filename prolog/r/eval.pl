@@ -3,6 +3,7 @@
           ]).
 :- use_module(library(strings)).
 :- use_module(library(r/r_serve)).
+:- use_module(library(r/r_call), []).
 
 eval(A, E) :-
     split_string(A, "\n", "\r", C),
