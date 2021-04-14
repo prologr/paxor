@@ -15,24 +15,24 @@ up :- thread_create(tidy, _, [alias(tidy), detached(true)]).
 
 tidy :-
     repeat,
-    forall(r(A), tidy(A)),
+    forall(r(R), tidy(R)),
     setting(delay, Delay),
     sleep(Delay),
     fail.
 
-tidy(A) :-
-    restyle_identifier(one_two, A, B),
-    atomic_concat(r_, B, C),
-    tidy(A, C).
+tidy(R) :-
+    restyle_identifier(one_two, R, Alias0),
+    atomic_concat(r_, Alias0, Alias),
+    tidy(R, Alias).
 
-tidy(_, B) :- thread_property(_, alias(B)), !.
-tidy(A, B) :- thread_create_in_pool(r, eval(A), _,
-                                    [ alias(B),
-                                      detached(true)
-                                    ]).
+tidy(_, Alias) :- thread_property(_, alias(Alias)), !.
+tidy(R, Alias) :- thread_create_in_pool(r, eval(R), _,
+                                        [ alias(Alias),
+                                          detached(true)
+                                        ]).
 
-eval(A) :-
-    read_file_to_string(A, B, []),
-    eval_r(B, _).
+eval(R) :-
+    read_file_to_string(R, R_, []),
+    eval_r(R_, _).
 
-r(A) :- directory_member(., A, [extensions(['R', r]), recursive(true)]).
+r(R) :- directory_member(., R, [extensions(['R', r]), recursive(true)]).
