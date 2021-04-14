@@ -25,6 +25,7 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys E298A3A825
 RUN apt-get update
 RUN apt-get install -y r-base
 RUN apt-get install -y r-base-dev
+RUN apt-get install -y libssl-dev
 RUN apt-get install -y libcurl4-openssl-dev
 
 RUN Rscript -e 'install.packages("Rserve",, "http://rforge.net/")'
