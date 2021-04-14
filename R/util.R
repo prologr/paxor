@@ -17,5 +17,5 @@ url <- function(...) {
 content_for_response <- function(response) {
   httr::stop_for_status(response)
   content <- httr::content(response)
-  if (identical(content, raw(0))) TRUE else content
+  if (identical(content, raw(0))) NULL else content
 }

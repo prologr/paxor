@@ -19,7 +19,7 @@ GET <- function(...) {
 #' @examples
 #' > list(a = 1, b = 2, c = 3) %>% paxor::SET()
 #' a    b    c
-#' TRUE TRUE TRUE
+#' NULL NULL NULL
 #'
 SET <- function(...) {
   dots <- unlist(list(...))
